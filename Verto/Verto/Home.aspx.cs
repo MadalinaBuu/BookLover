@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 
 namespace Verto
@@ -52,6 +53,21 @@ namespace Verto
                     }
                 }
             }
+        }
+        [WebMethod]
+        public static bool SaveCategory(Category category)
+        {
+            bool result = false;
+            string message = string.Empty;
+            int results = 0;
+            if (String.IsNullOrEmpty(category.Name)) message += "Add category name ! ";
+            if (String.IsNullOrEmpty(category.Source)) message += "Add category image ! ";
+            if(!string.IsNullOrEmpty(message))
+            {
+                //divErrorMessage.Visible = true;
+                //divErrorMessage.InnerText = message;
+            }
+            return result;
         }
     }
 }

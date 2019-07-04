@@ -127,6 +127,12 @@
     <Content Include="js\vendor\foundation.min.js" />
     <Content Include="js\vendor\jquery.js" />
     <Content Include="js\vendor\what-input.js" />
+    <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Verto.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Verto.Context.cs</LastGenOutput>
@@ -154,6 +160,13 @@
       <DependentUpon>Verto.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteMaster.Master.cs">
+      <DependentUpon>SiteMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMaster.Master.designer.cs">
+      <DependentUpon>SiteMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="Tab.cs">
       <DependentUpon>Verto.tt</DependentUpon>
     </Compile>
@@ -182,6 +195,7 @@
     <Content Include="Verto.edmx.diagram">
       <DependentUpon>Verto.edmx</DependentUpon>
     </Content>
+    <Content Include="SiteMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
