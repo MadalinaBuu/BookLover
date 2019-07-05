@@ -25,6 +25,10 @@ a {
     background-size: cover;
     background-position: center bottom;
 }
+.img-resize {
+    max-width: 330px;
+    max-height: 330px;
+}
 
 .lSPager {
     display: none;

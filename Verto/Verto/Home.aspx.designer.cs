@@ -31,6 +31,33 @@ namespace Verto {
         protected global::System.Web.UI.WebControls.ListView lvProducts;
         
         /// <summary>
+        /// btnShowProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowProducts;
+        
+        /// <summary>
+        /// divProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProducts;
+        
+        /// <summary>
+        /// gvProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvProducts;
+        
+        /// <summary>
         /// rptCategories control.
         /// </summary>
         /// <remarks>
@@ -38,15 +65,6 @@ namespace Verto {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCategories;
-        
-        /// <summary>
-        /// divErrorMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divErrorMessage;
         
         /// <summary>
         /// txtCategoryName control.
@@ -73,6 +91,6 @@ namespace Verto {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSaveCategory;
+        protected global::System.Web.UI.WebControls.Button btnSaveCategory;
     }
 }

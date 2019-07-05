@@ -12,8 +12,9 @@
     <title>Opticron</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/app.css" />
     <link type="text/css" rel="stylesheet" href="css/lightslider.css" />
+    <link type="text/css" rel="stylesheet" href="css/validationEngine.jquery.css" />
+    <link rel="stylesheet" href="css/app.css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -95,6 +96,8 @@
             <script src="js/vendor/jquery.js"></script>
             <script src="js/vendor/foundation.js"></script>
             <script src="js/lightslider.js"></script>
+            <script src="js/jquery.validationEngine-en.js"></script>
+            <script src="js/jquery.validationEngine.js"></script>
             <script src="js/app.js"></script>
         </div>
     </form>

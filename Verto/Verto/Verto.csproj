@@ -93,6 +93,7 @@
     <Content Include="css\foundation.min.css" />
     <Content Include="css\lightslider.css" />
     <Content Include="css\lightslider.min.css" />
+    <Content Include="css\validationEngine.jquery.css" />
     <Content Include="Home.aspx" />
     <Content Include="img\categories\accesories.jpg" />
     <Content Include="img\categories\binoculars.jpg" />
@@ -121,6 +122,8 @@
     <Content Include="img\slide3.jpg" />
     <Content Include="img\slide4.jpg" />
     <Content Include="js\app.js" />
+    <Content Include="js\jquery.validationEngine-en.js" />
+    <Content Include="js\jquery.validationEngine.js" />
     <Content Include="js\lightslider.js" />
     <Content Include="js\lightslider.min.js" />
     <Content Include="js\vendor\foundation.js" />
@@ -130,9 +133,6 @@
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Verto.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Verto.Context.cs</LastGenOutput>
@@ -170,6 +170,7 @@
     <Compile Include="Tab.cs">
       <DependentUpon>Verto.tt</DependentUpon>
     </Compile>
+    <Compile Include="UtilsClass.cs" />
     <Compile Include="Verto.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

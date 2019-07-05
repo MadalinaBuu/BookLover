@@ -1,8 +1,11 @@
 $(document).foundation()
 
 $(document).ready(function () {
-    $("#lightSlider").lightSlider({
+    var slider = $("#lightSlider").lightSlider({
         item: 4,
+        speed: 700,
+        pause: 3000,
+        loop: true,
         responsive: [
             {
                 breakpoint: 1024,
@@ -13,46 +16,67 @@ $(document).ready(function () {
             }
         ]
     });
-    //$('#btnSaveCategory').click(function () {
-    //    var category = {};
-    //    category.Name = $('#txtCategoryName').val();
-    //    category.Source = $('#txtCategoryImage').val();
-    //    $.ajax({
-    //        type: "POST",
-    //        url: "Home.aspx/SaveCategory",
-    //        data: '{category: ' + JSON.stringify(category) + '}',
-    //        contentType: "application/json; charset=utf-8",
-    //        dataType: "json",
-    //        success: function (response) {
-    //            alert("User has been added successfully.");
-    //            window.location.reload();
-    //        }
-    //    });
-    //    return false;
-    //});
-});
-function clicker(e) {
-    e.preventDefault();
-    var categoryObj = {
-        name: $('#MainContent_txtCategoryName').val(),
-        source: $('#MainContent_txtCategoryImage').val()
-    };
 
-    var category = JSON.stringify(categoryObj);
-    $.ajax({
-        type: "POST",
-        url: "Home.aspx/SaveCategory",
-        data: '{category:' + category + '}',
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            $("#commentForm").validate();
-            alert("User has been added successfully.");
-            //window.location.reload();
-        },
-        error: function (result) {
-            console.log("error" + result);
-        }
+    slider.play();
+    $('.errorMessage').hide();
+    $('.btnViewAllProducts').click(function () {
+        ('#divProducts').toggle();
     });
-    return false;
+});
+
+function validate() {
+
+    //var valid = $(".divFORM").validationEngine();
+    //valid = $(".divFORM").validationEngine('validate');
+
+    var validCategoryName = $("#MainContent_txtCategoryName").validationEngine('validate');
+    var validCategorySource = $("#MainContent_txtCategoryImage").validationEngine('validate');
+
+    if (validCategoryName || validCategorySource) {
+
+        return true;
+
+    } else {
+        return false;
+    }
+}
+
+function SaveCategory(e) {
+    e.preventDefault();
+
+    var name = $('#MainContent_txtCategoryName').val();
+    var source = $('#MainContent_txtCategoryImage').val();
+
+
+    if (validate()) {
+        var categoryObj = {
+            name: name,
+            source: source
+        };
+
+        var category = JSON.stringify(categoryObj);
+        $.ajax({
+            type: "POST",
+            url: "Home.aspx/SaveCategory",
+            data: '{category:' + category + '}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.d == "succes") {
+                    //$('.errorMessage').hide();
+                    //$('.errorMessage').append("");
+                    $('.close-button').click();
+                    window.location.reload(true);
+                }
+                else {
+                    $('.errorMessage').show();
+                    $('.errorMessage').append("<span>" + result.d + "</span>");
+                }
+            },
+            error: function (result) {
+                console.log("error" + result);
+            }
+        });
+        return false;
+    }
 }

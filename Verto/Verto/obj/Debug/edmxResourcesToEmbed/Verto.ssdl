@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="40" />
     <Property Name="Source" Type="varchar" MaxLength="100" />
   </EntityType>
@@ -12,9 +12,8 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="40" />
-    <Property Name="New" Type="int" />
     <Property Name="Offer" Type="varchar" MaxLength="100" />
     <Property Name="Source" Type="varchar" MaxLength="100" />
     <Property Name="CategoryId" Type="int" />
@@ -23,10 +22,10 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="20" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-    <Property Name="Source" Type="nvarchar" MaxLength="20" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK__products__Catego__3D5E1FD2">
     <End Role="categories" Type="Self.categories" Multiplicity="0..1" />

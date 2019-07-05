@@ -15,7 +15,6 @@
         <MappingFragment StoreEntitySet="products">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="New" ColumnName="New" />
           <ScalarProperty Name="Offer" ColumnName="Offer" />
           <ScalarProperty Name="Source" ColumnName="Source" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
