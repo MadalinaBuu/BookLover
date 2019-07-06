@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="32cffcc34acd48f4955c0c3e2aab602d" Name="Diagram1">
-        <EntityTypeShape EntityType="VertoModel.Category" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="VertoModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="9d70847fb76e434ab0f199f439f7d5dd" Name="Diagram1">
+        <EntityTypeShape EntityType="VertoModel.Category" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VertoModel.Product" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="VertoModel.Tab" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="VertoModel.FK__products__Catego__3D5E1FD2" ManuallyRouted="false" />
       </Diagram>

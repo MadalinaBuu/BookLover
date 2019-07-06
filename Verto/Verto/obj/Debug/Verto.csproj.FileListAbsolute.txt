@@ -1,3 +1,4 @@
+C:\Users\Madalina\Desktop\Verto\Verto\Verto\obj\Debug\Verto.csproj.CoreCompileInputs.cache
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\bin\Verto.dll.config
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\bin\Verto.dll
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\bin\Verto.pdb
@@ -59,7 +60,6 @@ C:\Users\Madalina\Desktop\Verto\Verto\Verto\bin\EntityFramework.xml
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\bin\EntityFramework.SqlServer.xml
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\bin\Newtonsoft.Json.xml
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Madalina\Desktop\Verto\Verto\Verto\obj\Debug\Verto.csproj.CoreCompileInputs.cache
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\obj\Debug\Verto.csproj.CopyComplete
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\obj\Debug\Verto.dll
 C:\Users\Madalina\Desktop\Verto\Verto\Verto\obj\Debug\Verto.pdb

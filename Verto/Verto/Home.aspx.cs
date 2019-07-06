@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,67 +12,39 @@ namespace Verto
 {
     public partial class Home : Page
     {
-        string constr = ConfigurationManager.ConnectionStrings["VertoContext"].ConnectionString;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindList("tabs", lvTabs, false);
-            BindList("products", lvProducts, true);
-            BindRepeater("categories", rptCategories);
+            BindTabs();
+            BindLVProducts();
+            BindCategories();
         }
-
-        private void BindList(string table, ListView list, bool products)
+        private void BindTabs()
         {
-            string constr = ConfigurationManager.ConnectionStrings["VertoContext"].ConnectionString;
-            string query = string.Empty;
-            if (products)
-                query += "SELECT top 3 * FROM " + table + " WHERE Offer <> ''";
-            else
-                query = "SELECT * FROM " + table;
-            using (SqlConnection con = new SqlConnection(constr))
-            {
-                using (SqlDataAdapter sda = new SqlDataAdapter(query, con))
-                {
-                    using (DataTable dt = new DataTable())
-                    {
-                        sda.Fill(dt);
-                        list.DataSource = dt;
-                        list.DataBind();
-                    }
-                }
-            }
+            string query = "SELECT * FROM tabs";
+            DataTable tabs = UtilsClass.Select(query);
+            lvTabs.DataSource = tabs;
+            lvTabs.DataBind();
         }
-        private void BindRepeater(string table, Repeater rpt)
+        private void BindLVProducts()
         {
-            string query = "SELECT * FROM " + table + " ORDER BY Id DESC";
-            using (SqlConnection con = new SqlConnection(constr))
-            {
-                using (SqlDataAdapter sda = new SqlDataAdapter(query, con))
-                {
-                    using (DataTable dt = new DataTable())
-                    {
-                        sda.Fill(dt);
-                        rpt.DataSource = dt;
-                        rpt.DataBind();
-                    }
-                }
-            }
+            string query = "SELECT top 3 * FROM products WHERE Offer<> ''";
+            DataTable products = UtilsClass.Select(query);
+            lvProducts.DataSource = products;
+            lvProducts.DataBind();
         }
-        private void BindProducts()
+        private void BindGVProducts()
         {
             string query = "SELECT p.Id, p.Name, p.Offer, p.Source, c.Name AS Category FROM products p INNER JOIN categories c ON p.CategoryId = c.Id";
-            using (SqlConnection con = new SqlConnection(constr))
-            {
-                using (SqlDataAdapter sda = new SqlDataAdapter(query, con))
-                {
-                    using (DataTable dt = new DataTable())
-                    {
-                        sda.Fill(dt);
-                        gvProducts.DataSource = dt;
-                        gvProducts.DataBind();
-                    }
-                }
-            }
+            DataTable products = UtilsClass.Select(query);
+            gvProducts.DataSource = products;
+            gvProducts.DataBind();
+        }
+        private void BindCategories()
+        {
+            string query = "SELECT * FROM categories ORDER BY Id DESC";
+            DataTable categories = UtilsClass.Select(query);
+            rptCategories.DataSource = categories;
+            rptCategories.DataBind();
         }
         [WebMethod]
         public static string SaveCategory(Category category)
@@ -94,11 +68,11 @@ namespace Verto
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    UtilsClass.SaveImage(category.Source, category.Name);
+                    UtilsClass.SaveImage(category.Source, "img/categories/", category.Name);
                 }
                 return "succes";
             }
-            catch (SqlException )
+            catch (SqlException)
             {
                 return "An error has occured!";
             }
@@ -111,25 +85,13 @@ namespace Verto
         protected void btnShowProducts_Click(object sender, EventArgs e)
         {
             divProducts.Visible = true;
-            BindProducts();
+            BindGVProducts();
         }
 
         protected void gvProducts_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["VertoContext"].ConnectionString);
-            GridViewRow row = gvProducts.Rows[e.RowIndex];
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM products where Id='" + Convert.ToInt32(gvProducts.DataKeys[e.RowIndex].Value.ToString()) + "'", conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (SqlException){}
-            finally
-            {
-                conn.Close();
-            }
-            BindProducts();
+            UtilsClass.Delete("products", gvProducts.DataKeys[e.RowIndex].Value.ToString());
+            BindGVProducts();
         }
 
         protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -139,56 +101,74 @@ namespace Verto
                 LinkButton lbDelete = (LinkButton)e.Row.FindControl("lbDelete");
                 lbDelete.Attributes.Add("onclick", "return confirm('Are you sure to delete this record?');");
 
-                #region ddlCategory
                 DropDownList ddlCategory = (e.Row.FindControl("ddlCategory") as DropDownList);
                 ddlCategory.Enabled = e.Row.RowIndex == gvProducts.EditIndex;
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["VertoContext"].ConnectionString);
+                string query = "SELECT * from categories";
+                DataTable categories = UtilsClass.Select(query);
+                ddlCategory.DataSource = categories;
+                ddlCategory.DataBind();
+                ddlCategory.DataTextField = "Name";
+                ddlCategory.DataValueField = "ID";
+                ddlCategory.DataBind();
+                ddlCategory.Items.Insert(0, new ListItem("Select", "-1"));
+
                 try
                 {
-                    conn.Open();
-                    string cmd = "Select * from categories";
-                    SqlDataAdapter adpt = new SqlDataAdapter(cmd, conn);
-                    DataTable dt = new DataTable();
-                    adpt.Fill(dt);
-                    ddlCategory.DataSource = dt;
-                    ddlCategory.DataBind();
-                    ddlCategory.DataTextField = "Name";
-                    ddlCategory.DataValueField = "ID";
-                    ddlCategory.DataBind();
                     string selectedCategory = DataBinder.Eval(e.Row.DataItem, "Category").ToString();
                     ddlCategory.Items.FindByText(selectedCategory).Selected = true;
                 }
                 catch (Exception) { }
-                finally
-                {
-                    conn.Close();
-                }
-                #endregion
             }
         }
 
         protected void gvProducts_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvProducts.EditIndex = e.NewEditIndex;
-            BindProducts();
+            BindGVProducts();
         }
 
         protected void gvProducts_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["VertoContext"].ConnectionString);
             int id = Convert.ToInt32(gvProducts.DataKeys[e.RowIndex].Value.ToString());
-            GridViewRow row = (GridViewRow)gvProducts.Rows[e.RowIndex];
+            GridViewRow row = gvProducts.Rows[e.RowIndex];
             TextBox txtName = (TextBox)row.Cells[0].Controls[0];
             TextBox txtOffer = (TextBox)row.Cells[1].Controls[0];
             TextBox txtSource = (TextBox)row.Cells[2].Controls[0];
             DropDownList ddlCategory = (DropDownList)row.Cells[3].FindControl("ddlCategory");
             gvProducts.EditIndex = -1;
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("UPDATE products SET Name='" + txtName.Text + "',Offer='" + txtOffer.Text + "',Source='" + txtSource.Text + "',CategoryId='" + ddlCategory.SelectedValue + "'WHERE Id='" + id + "'", conn);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            BindProducts();
-            BindList("products", lvProducts, true);
+            try
+            {
+                #region Check File
+                string query = "SELECT top 1 Name, Source FROM products WHERE Id = " + id + ";";
+                DataTable dtProducts = UtilsClass.Select(query);
+
+                if (dtProducts.Rows.Count > 0)
+                {
+                    if ((dtProducts.Rows[0]["Source"].ToString().ToLower() != txtSource.Text.ToString().ToLower()))
+                    {
+                        string fileName = dtProducts.Rows[0]["Name"].ToString();
+                        UtilsClass.DeleteImage(fileName);
+                        UtilsClass.SaveImage(txtSource.Text, "img/products/", txtName.Text);
+                    }
+                }
+                #endregion
+
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE products SET Name='" + txtName.Text + "',Offer='" + txtOffer.Text + "',Source='" + txtSource.Text + "',CategoryId='" + ddlCategory.SelectedValue + "'WHERE Id='" + id + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception) { }
+
+            BindGVProducts();
+            BindLVProducts();
+        }
+
+        protected void gvProducts_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvProducts.EditIndex = -1;
+            BindGVProducts();
         }
     }
 }

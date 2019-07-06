@@ -24,29 +24,18 @@ $(document).ready(function () {
     });
 });
 
-function validate() {
-
-    //var valid = $(".divFORM").validationEngine();
-    //valid = $(".divFORM").validationEngine('validate');
-
+function validate()
+{
     var validCategoryName = $("#MainContent_txtCategoryName").validationEngine('validate');
     var validCategorySource = $("#MainContent_txtCategoryImage").validationEngine('validate');
 
-    if (validCategoryName || validCategorySource) {
-
-        return true;
-
-    } else {
-        return false;
-    }
+    return validCategoryName && validCategorySource;
 }
 
 function SaveCategory(e) {
     e.preventDefault();
-
     var name = $('#MainContent_txtCategoryName').val();
     var source = $('#MainContent_txtCategoryImage').val();
-
 
     if (validate()) {
         var categoryObj = {
@@ -63,8 +52,6 @@ function SaveCategory(e) {
             dataType: "json",
             success: function (result) {
                 if (result.d == "succes") {
-                    //$('.errorMessage').hide();
-                    //$('.errorMessage').append("");
                     $('.close-button').click();
                     window.location.reload(true);
                 }

@@ -16,7 +16,6 @@ namespace Verto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> New { get; set; }
         public string Offer { get; set; }
         public string Source { get; set; }
         public Nullable<int> CategoryId { get; set; }

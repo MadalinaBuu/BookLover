@@ -61,7 +61,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Source" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="products" Relationship="Self.FK__products__Catego__3D5E1FD2" FromRole="categories" ToRole="products" />
@@ -70,9 +70,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="New" Type="Int32" />
           <Property Name="Offer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Source" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="Int32" />
@@ -82,7 +81,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -99,10 +98,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VertoContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VertoContextData" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories1" EntityType="VertoModel.Category" />
           <EntitySet Name="Products1" EntityType="VertoModel.Product" />
-          <EntitySet Name="Tabs" EntityType="VertoModel.Tab" />
+          <EntitySet Name="Tabs1" EntityType="VertoModel.Tab" />
           <AssociationSet Name="FK__products__Catego__3D5E1FD2" Association="Self.FK__products__Catego__3D5E1FD2">
             <End Role="categories" EntitySet="Categories1" />
             <End Role="products" EntitySet="Products1" />
@@ -113,7 +112,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="VertoModelStoreContainer" CdmEntityContainer="VertoContext">
+        <EntityContainerMapping StorageEntityContainer="VertoModelStoreContainer" CdmEntityContainer="VertoContextData">
           <EntitySetMapping Name="Categories1">
             <EntityTypeMapping TypeName="VertoModel.Category">
               <MappingFragment StoreEntitySet="categories">
@@ -134,7 +133,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tabs">
+          <EntitySetMapping Name="Tabs1">
             <EntityTypeMapping TypeName="VertoModel.Tab">
               <MappingFragment StoreEntitySet="tabs">
                 <ScalarProperty Name="Id" ColumnName="Id" />

@@ -13,10 +13,10 @@ namespace Verto
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VertoContext : DbContext
+    public partial class VertoContextData : DbContext
     {
-        public VertoContext()
-            : base("name=VertoContext")
+        public VertoContextData()
+            : base("name=VertoContextData")
         {
         }
     
@@ -27,6 +27,6 @@ namespace Verto
     
         public virtual DbSet<Category> Categories1 { get; set; }
         public virtual DbSet<Product> Products1 { get; set; }
-        public virtual DbSet<Tab> Tabs { get; set; }
+        public virtual DbSet<Tab> Tabs1 { get; set; }
     }
 }

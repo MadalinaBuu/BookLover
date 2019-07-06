@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VertoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Source" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK__products__Catego__3D5E1FD2" FromRole="categories" ToRole="products" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Offer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Source" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="category" Relationship="Self.FK__products__Catego__3D5E1FD2" FromRole="products" ToRole="categories" />
+  </EntityType>
+  <EntityType Name="Tab">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__products__Catego__3D5E1FD2">
+    <End Role="categories" Type="VertoModel.Category" Multiplicity="0..1" />
+    <End Role="products" Type="VertoModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VertoContextData" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories1" EntityType="VertoModel.Category" />
+    <EntitySet Name="Products1" EntityType="VertoModel.Product" />
+    <EntitySet Name="Tabs1" EntityType="VertoModel.Tab" />
+    <AssociationSet Name="FK__products__Catego__3D5E1FD2" Association="Self.FK__products__Catego__3D5E1FD2">
+      <End Role="categories" EntitySet="Categories1" />
+      <End Role="products" EntitySet="Products1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
