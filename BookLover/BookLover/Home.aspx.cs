@@ -84,7 +84,16 @@ namespace BookLover
 
         protected void btnShowProducts_Click(object sender, EventArgs e)
         {
-            divProducts.Visible = true;
+            if (divProducts.Visible)
+            {
+                divProducts.Visible = false;
+                btnShowProducts.Text = "View All Products";
+            }
+            else
+            {
+                divProducts.Visible = true;
+                btnShowProducts.Text = "Hide All Products";
+            }
             BindGVProducts();
         }
 

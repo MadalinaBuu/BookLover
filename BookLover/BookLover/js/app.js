@@ -1,6 +1,10 @@
 $(document).foundation()
 
 $(document).ready(function () {
+    $('.errorMessage').hide();
+    $("#btnShowProducts").click(function () {
+        $("#divProducts").toggle();
+    });
     var slider = $("#lightSlider").lightSlider({
         item: 4,
         speed: 700,
@@ -18,12 +22,7 @@ $(document).ready(function () {
     });
 
     slider.play();
-    $('.errorMessage').hide();
-    $('.btnViewAllProducts').click(function () {
-        ('#divProducts').toggle();
-    });
 });
-
 function validate()
 {
     var validCategoryName = $("#MainContent_txtCategoryName").validationEngine('validate');

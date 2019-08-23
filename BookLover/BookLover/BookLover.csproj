@@ -127,10 +127,10 @@
     <Content Include="img\products\golfscoperangefinders.jpg" />
     <Content Include="img\products\hr66gaedfieldscope.jpg" />
     <Content Include="img\products\marinemonocular.jpg" />
-    <Content Include="img\slide1.jpg" />
+    <Content Include="img\slide1.jpeg" />
     <Content Include="img\slide2.jpg" />
     <Content Include="img\slide3.jpg" />
-    <Content Include="img\slide4.jpg" />
+    <Content Include="img\slide4.jpeg" />
     <Content Include="js\app.js" />
     <Content Include="js\jquery.validationEngine-en.js" />
     <Content Include="js\jquery.validationEngine.js" />

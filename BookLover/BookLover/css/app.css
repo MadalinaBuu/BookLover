@@ -10,16 +10,20 @@ body {
 .full-width {
     width: 100%;
 }
+.card-image {
+    width: 100%;
+    height: 50%;
+}
 a {
     color: #444;
 }
 .button {
     background-color: #85003f;
-}
-.button-grey {
-    color: #FFF;
-    background-color: #929497;
     border: 0px solid transparent;
+}
+.button:hover, .button:focus {
+    background-color: #cd0b67eb;
+    border-color: #fff;
 }
 .text-color-white {
     color: #FFF;
@@ -31,13 +35,18 @@ a {
 }
 .special-offers > img {
     max-height: 330px;
+    width: 100%;
+}
+.category-image {
+    height:260px;
+    width:100%;
 }
 
 .lSPager {
     display: none;
 }
 .special-offers {
-    background-color: #FFF;
+    background-color: #ffffff3b;
     margin: 35px 0;
 }
 .section {
@@ -47,7 +56,8 @@ a {
 }
 
 .section-grey {
-    background-color: #E6E7E8;
+    /*background-color: #E6E7E8;*/
+    background-color: #f98cd178;
 }
 
 .padding-top-3 {
@@ -128,7 +138,7 @@ div#responsive-menu {
 }
 /********* Footer **********/
 .footer {
-    background-color: #bbbdbf;
+    background-color: #85003f;
     color: #FFF;
     padding: 40px 0;
 }
